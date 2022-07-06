@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package proto;
+option go_package = "./;pb";
+
+import "empty.proto";
+import "date.proto";
+import "customer.proto";
+import "flight.proto";
+
+
+service MyBooking {
+    rpc CreateBooking(Booking) returns (Booking);
+    rpc ViewBooking(ViewBookingRequest) returns (ViewBookingResponse);
+    rpc CancelBooking(CancelBookingRequest) returns (Empty);
+    rpc GetBookings(GetBookingsRequest) returns (Bookings);
+}
+
+message Booking {
+    string id = 1;
+    string booking_code = 2;
+    Date booking_date = 3;
+    string status = 4;
+    string customer_id = 5;
+    string flight_id = 6;
+}
+
+message Bookings {
+    repeated Booking bookings = 1;
+}
+
+message GetBookingsRequest {
+    string customer_id = 1;
+}
+
+message ViewBookingRequest {
+    string customer_id = 1;
+    string booking_code = 2;
+}
+
+message ViewBookingResponse {
+    string booking_code = 1;
+    Date booking_date = 2;
+    Customer customer = 3;
+    Flight flight = 4;
+}
+
+message CancelBookingRequest {
+    string id = 1;
+}
