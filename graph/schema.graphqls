@@ -1,0 +1,75 @@
+type Query {
+  customerBooking(input: ViewCustomerBookingHistories!): [Customer!]!
+}
+
+type Mutation {
+  changeCustomerPassword(input: ChangeCustomerPassword!): Empty!
+  createCustomer(input: CreateNewCustomer!): Customer!
+  updateCustomer(input: UpdateCustomer!): Customer!
+}
+
+type Empty{
+  text: String!
+}
+
+type Customer {
+  id: String! 
+  name: String!
+  date_of_bith: String!
+  address: String!
+  email: String!
+}
+
+input ViewCustomerBookingHistories {
+  id: String!
+}
+
+input ChangeCustomerPassword {
+   id: String!
+   old_password: String!
+   new_password: String!
+}
+
+input CreateNewCustomer {
+  id: String! 
+  name: String!
+  date_of_bith: String!
+  address: String!
+  email: String!
+  password: String!
+}
+
+input UpdateCustomer {
+  id: String! 
+  name: String!
+  date_of_bith: String!
+  address: String!
+  email: String!
+}
+
+type Flight {
+  id: String!
+  from: String!
+  to: String!
+  depart_date: String!
+  depart_time: String!
+  status: String!
+  slot: String!
+  flight_plane: String!
+}
+
+input CreateNewFlight{
+  id: String!
+  from: String!
+  to: String!
+  depart_date: String!
+  depart_time: String!
+  status: String!
+  slot: String!
+  flight_plane: String!
+}
+
+type Booking {
+  booking_code: String!
+  booking_date: String!
+}
