@@ -30,14 +30,34 @@ brew install goose
 docker-compose up
 ```
 
-**Migration**
-
-```sh
-goose -dir database/migrations/${db_name} postgres ${DB_CONNECTION_STRING} up -dir "database/migrations/${db_name}"
-```
-
 **Proto gen**
 
 ```sh
 protoc -I=proto proto/*.proto --go_out=:pb --go-grpc_out=:pb
+```
+
+## Testing
+
+**1.Running the grpc service**
+
+***Customer***
+```sh
+go run grpc/customer/main.go
+```
+
+***Flight***
+```sh
+go run grpc/flight/main.go
+```
+
+***Booking***
+```sh
+go run grpc/booking/main.go
+```
+
+**2.Running the api**
+
+***Customer***
+```sh
+go run clients/rest/customer/main.go
 ```
