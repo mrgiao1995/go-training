@@ -3,6 +3,7 @@ package handlers
 import (
 	"context"
 	"go-training/grpc/customer/models"
+	log "go-training/logger"
 	"go-training/pb"
 	"time"
 
@@ -16,7 +17,7 @@ func (h *CustomerHandler) UpdateCustomer(ctx context.Context, m *pb.Customer) (*
 	id, err := uuid.Parse(m.Id)
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	req := &models.Customer{
